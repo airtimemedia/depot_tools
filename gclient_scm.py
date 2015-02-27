@@ -22,6 +22,7 @@ import git_cache
 import scm
 import shutil
 import subprocess2
+from os.path import expanduser
 
 
 THIS_FILE_PATH = os.path.abspath(__file__)
@@ -868,7 +869,11 @@ class GitWrapper(SCMWrapper):
       # to stdout
       self.Print('')
     cfg = gclient_utils.DefaultIndexPackConfig(url)
-    clone_cmd = cfg + ['clone', '--no-checkout', '--progress']
+    home = expanduser("~")
+    if os.path.isdir(home+'/git-cache'):
+      clone_cmd = cfg + ['clone', '--no-checkout', '--progress', '--reference', home+'/git-cache']
+    else:
+      clone_cmd = cfg + ['clone', '--no-checkout', '--progress']
     if self.cache_dir:
       clone_cmd.append('--shared')
     if options.verbose:

@@ -13,6 +13,9 @@ import sys
 
 DEPOT_TOOLS_ROOT = os.path.abspath(os.path.dirname(__file__))
 SENTINEL_PATH = os.path.join(DEPOT_TOOLS_ROOT, '.disable_auto_update')
+print("--SUMIT Python version {}".format(sys.version))
+print("--SUMIT Python PATH {}".format(sys.path))
+print("--SUMIT Python Executable {}".format(os.path.dirname(sys.executable)))
 
 
 def main():
